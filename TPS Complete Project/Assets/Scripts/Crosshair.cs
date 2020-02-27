@@ -33,9 +33,10 @@ public class Crosshair : MonoBehaviour
 
     private void Update()
     {
-        if (!hitPointReticle.enabled) return;
+        if (!hitPointReticle.enabled) 
+            return;
 
-        crossHairRectTransform.position = Vector3.SmoothDamp(crossHairRectTransform.position, targetPoint,
-            ref currentHitPointVelocity, smoothTime * Time.deltaTime);
+        crossHairRectTransform.position 
+            = Vector3.SmoothDamp(crossHairRectTransform.position, targetPoint, ref currentHitPointVelocity, smoothTime * Time.deltaTime);
     }
 }

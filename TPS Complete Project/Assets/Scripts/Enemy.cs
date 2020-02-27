@@ -19,7 +19,7 @@ public class Enemy : LivingEntity
     
     private State state;
     
-    private NavMeshAgent agent; // 경로계산 AI 에이전트
+    private NavMeshAgent agent; // 경로 계산 AI 에이전트
     private Animator animator; // 애니메이터 컴포넌트
 
     public Transform attackRoot;
@@ -78,9 +78,8 @@ public class Enemy : LivingEntity
         audioPlayer = GetComponent<AudioSource>();
         skinRenderer = GetComponentInChildren<Renderer>();
 
-        attackDistance = Vector3.Distance(transform.position,
-                             new Vector3(attackRoot.position.x, transform.position.y, attackRoot.position.z)) +
-                         attackRadius;
+        attackDistance = Vector3.Distance(transform.position, new Vector3(attackRoot.position.x, transform.position.y, attackRoot.position.z)) 
+                            + attackRadius;
         
         attackDistance += agent.radius;
 
@@ -89,8 +88,7 @@ public class Enemy : LivingEntity
     }
 
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
-    public void Setup(float health, float damage,
-        float runSpeed, float patrolSpeed, Color skinColor)
+    public void Setup(float health, float damage, float runSpeed, float patrolSpeed, Color skinColor)
     {
         // 체력 설정
         this.startingHealth = health;

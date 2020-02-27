@@ -18,7 +18,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         get
         {
-            if (Time.time >= lastDamagedTime + minTimeBetDamaged) return false;
+            if (Time.time >= lastDamagedTime + minTimeBetDamaged) 
+                return false;
 
             return true;
         }
@@ -36,7 +37,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
     // 데미지를 입는 기능
     public virtual bool ApplyDamage(DamageMessage damageMessage)
     {
-        if (IsInvulnerable || damageMessage.damager == gameObject || dead) return false;
+        if (IsInvulnerable || damageMessage.damager == gameObject || dead) 
+            return false;
 
         lastDamagedTime = Time.time;
 
@@ -44,7 +46,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
         health -= damageMessage.amount;
 
         // 체력이 0 이하 && 아직 죽지 않았다면 사망 처리 실행
-        if (health <= 0) Die();
+        if (health <= 0) 
+            Die();
 
         return true;
     }
@@ -52,7 +55,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
     // 체력을 회복하는 기능
     public virtual void RestoreHealth(float newHealth)
     {
-        if (dead) return;
+        if (dead) 
+            return;
 
         // 체력 추가
         health += newHealth;
@@ -62,7 +66,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public virtual void Die()
     {
         // onDeath 이벤트에 등록된 메서드가 있다면 실행
-        if (OnDeath != null) OnDeath();
+        if (OnDeath != null) 
+            OnDeath();
 
         // 사망 상태를 참으로 변경
         dead = true;
