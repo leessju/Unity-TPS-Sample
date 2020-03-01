@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<GameManager>();
+            if (instance == null) 
+                instance = FindObjectOfType<GameManager>();
             
             return instance;
         }
@@ -19,7 +20,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != this) Destroy(gameObject);
+        // GameManager가 하나만 생겨서 관리할 수 있도록 하기 위함
+        if (Instance != this) 
+            Destroy(gameObject);
     }
     
     public void AddScore(int newScore)

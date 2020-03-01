@@ -23,9 +23,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance != null && GameManager.Instance.isGameover) return;
+        if (GameManager.Instance != null && GameManager.Instance.isGameover) 
+            return;
         
-        if (enemies.Count <= 0) SpawnWave();
+        if (enemies.Count <= 0) 
+            SpawnWave();
         
         UpdateUI();
     }
@@ -37,11 +39,31 @@ public class EnemySpawner : MonoBehaviour
     
     private void SpawnWave()
     {
-        
+        wave++;
+        var spawnCount = Mathf.RoundToInt(wave * 5f);
+        for (var i = 0; i < spawnCount; i++) {
+            var enermyIntensity = Random.Range(0f, 1f);
+            CreateEnemy(enermyIntensity);
+        }
     }
     
+    // rotation => quaternion
+    // euler => vector3
     private void CreateEnemy(float intensity)
     {
+        var health = Mathf.Lerp(healthMin, healthMax, intensity);
+        var damage = Mathf.Lerp(damageMin, damageMax, intensity);
+        var speed = Mathf.Lerp(speedMin, speedMax, intensity);
+        var skinColor = Color.Lerp(Color.white, strongEnemyColor, intensity);;
 
+        var spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        var enermy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        enermy.Setup(health, damage, speed, speed * 0.3f, skinColor);
+        enemies.Add(enermy);
+        enermy.OnDeath += () => {
+            enemies.Remove(enermy);
+            Destroy(enermy.gameObject, 10f);
+            GameManager.Instance.AddScore(100);
+        };
     }
 }
