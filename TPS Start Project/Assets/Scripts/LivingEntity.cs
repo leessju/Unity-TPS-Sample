@@ -16,7 +16,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         get
         {
-            if (Time.time >= lastDamagedTime + minTimeBetDamaged) return false;
+            if (Time.time >= lastDamagedTime + minTimeBetDamaged) 
+                return false;
 
             return true;
         }
@@ -30,26 +31,30 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     public virtual bool ApplyDamage(DamageMessage damageMessage)
     {
-        if (IsInvulnerabe || damageMessage.damager == gameObject || dead) return false;
+        if (IsInvulnerabe || damageMessage.damager == gameObject || dead) 
+            return false;
 
         lastDamagedTime = Time.time;
         health -= damageMessage.amount;
         
-        if (health <= 0) Die();
+        if (health <= 0) 
+            Die();
 
         return true;
     }
     
     public virtual void RestoreHealth(float newHealth)
     {
-        if (dead) return;
+        if (dead) 
+            return;
         
         health += newHealth;
     }
     
     public virtual void Die()
     {
-        if (OnDeath != null) OnDeath();
+        if (OnDeath != null) 
+            OnDeath();
         
         dead = true;
     }

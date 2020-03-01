@@ -2,7 +2,6 @@
 using UnityEngine.AI;
 
 // 내비메쉬 관련 코드
-
 // 주기적으로 아이템을 플레이어 근처에 생성하는 스크립트
 public class ItemSpawner : MonoBehaviour
 {

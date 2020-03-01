@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면 자신을 파괴
-        if (Instance != this) Destroy(gameObject);
+        if (Instance != this) 
+            Destroy(gameObject);
     }
 
 

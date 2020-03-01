@@ -5,6 +5,7 @@ public class HealthPack : MonoBehaviour, IItem
 {
     public float health = 50; // 체력을 회복할 수치
 
+    // target : 대상 (이미 대상이네) 굳히 다른 단어를 찾아 쓸 필요는 없겠구나
     public void Use(GameObject target)
     {
         // 전달받은 게임 오브젝트로부터 LivingEntity 컴포넌트 가져오기 시도

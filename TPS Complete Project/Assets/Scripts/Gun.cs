@@ -85,12 +85,10 @@ public class Gun : MonoBehaviour
     {
         // 현재 상태가 발사 가능한 상태
         // && 마지막 총 발사 시점에서 timeBetFire 이상의 시간이 지남
-        if (state == State.Ready
-            && Time.time >= lastFireTime + timeBetFire)
+        if (state == State.Ready && Time.time >= lastFireTime + timeBetFire)
         {
             var xError = Utility.GetRandomNormalDistribution(0f, currentSpread);
             var yError = Utility.GetRandomNormalDistribution(0f, currentSpread);
-
 
             var fireDirection = aimTarget - fireTransform.position;
 

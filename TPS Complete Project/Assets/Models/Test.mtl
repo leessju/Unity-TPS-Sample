@@ -1,0 +1,20 @@
+newmtl ProBuilderDefault
+map_Kd GridBox_Default.png
+Kd 1 1 1
+d 1
+
+newmtl Barrel_Material
+bump Hexagons_A_Normal.tiff
+disp Hexagons_A_Height.tiff
+Kd 0.3018867 0.3018867 0.3018867
+d 1
+
+newmtl containers_diffuse
+bump containers_normals.png
+Kd 0.07689568 0.309413 0.6037736
+d 1
+
+newmtl Brown
+Kd 0.6156859 0.454902 0.282353
+d 1
+

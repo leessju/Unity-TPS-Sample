@@ -7,10 +7,8 @@ public class PlayerHealth : LivingEntity
 {
     private Animator animator;
     private AudioSource playerAudioPlayer; // 플레이어 소리 재생기
-
     public AudioClip deathClip; // 사망 소리
     public AudioClip hitClip; // 피격 소리
-
 
     private void Awake()
     {
@@ -40,10 +38,13 @@ public class PlayerHealth : LivingEntity
         UIManager.Instance.UpdateHealthText(dead ? 0f : health);
     }
 
+    // 420 
+
     // 데미지 처리
     public override bool ApplyDamage(DamageMessage damageMessage)
     {
-        if (!base.ApplyDamage(damageMessage)) return false;
+        if (!base.ApplyDamage(damageMessage)) 
+            return false;
         
         EffectManager.Instance.PlayHitEffect(damageMessage.hitPoint, damageMessage.hitNormal, transform, EffectManager.EffectType.Flesh);
         playerAudioPlayer.PlayOneShot(hitClip);

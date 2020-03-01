@@ -112,14 +112,13 @@ public class Enemy : LivingEntity
 
     private void Update()
     {
-        if (dead) return;
+        if (dead) 
+            return;
 
-        if (state == State.Tracking &&
-            Vector3.Distance(targetEntity.transform.position, transform.position) <= attackDistance)
+        if (state == State.Tracking && Vector3.Distance(targetEntity.transform.position, transform.position) <= attackDistance)
         {
             BeginAttack();
-        }
-            
+        }   
 
         // 추적 대상의 존재 여부에 따라 다른 애니메이션을 재생
         animator.SetFloat("Speed", agent.desiredVelocity.magnitude);
@@ -127,8 +126,8 @@ public class Enemy : LivingEntity
 
     private void FixedUpdate()
     {
-        if (dead) return;
-
+        if (dead) 
+            return;
 
         if (state == State.AttackBegin || state == State.Attacking)
         {
@@ -136,8 +135,8 @@ public class Enemy : LivingEntity
                 Quaternion.LookRotation(targetEntity.transform.position - transform.position, Vector3.up);
             var targetAngleY = lookRotation.eulerAngles.y;
 
-            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngleY,
-                                        ref turnSmoothVelocity, turnSmoothTime);
+            transform.eulerAngles = Vector3.up 
+                                        * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngleY, ref turnSmoothVelocity, turnSmoothTime);
         }
 
         if (state == State.Attacking)
@@ -145,8 +144,7 @@ public class Enemy : LivingEntity
             var direction = transform.forward;
             var deltaDistance = agent.velocity.magnitude * Time.deltaTime;
 
-            var size = Physics.SphereCastNonAlloc(attackRoot.position, attackRadius, direction, hits, deltaDistance,
-                whatIsTarget);
+            var size = Physics.SphereCastNonAlloc(attackRoot.position, attackRadius, direction, hits, deltaDistance, whatIsTarget);
 
             for (var i = 0; i < size; i++)
             {

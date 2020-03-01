@@ -10,7 +10,8 @@ public class UIManager : MonoBehaviour
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<UIManager>();
+            if (instance == null) 
+                instance = FindObjectOfType<UIManager>();
 
             return instance;
         }
@@ -18,7 +19,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject gameoverUI;
     [SerializeField] private Crosshair crosshair;
-
     [SerializeField] private Text healthText;
     [SerializeField] private Text lifeText;
     [SerializeField] private Text scoreText;

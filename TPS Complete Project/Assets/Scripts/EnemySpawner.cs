@@ -24,10 +24,12 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         // 게임 오버 상태일때는 생성하지 않음
-        if (GameManager.Instance != null && GameManager.Instance.isGameover) return;
+        if (GameManager.Instance != null && GameManager.Instance.isGameover) 
+            return;
 
         // 적을 모두 물리친 경우 다음 스폰 실행
-        if (enemies.Count <= 0) SpawnWave();
+        if (enemies.Count <= 0) 
+            SpawnWave();
 
         // UI 갱신
         UpdateUI();
@@ -47,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
         wave++;
 
         // 현재 웨이브 * 1.5에 반올림 한 개수 만큼 적을 생성
-        var spawnCount = Mathf.RoundToInt(wave * 5f);
+        var spawnCount = Mathf.RoundToInt(wave * 1.5f);
 
         // spawnCount 만큼 적을 생성
         for (var i = 0; i < spawnCount; i++)
@@ -77,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
         var enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
         // 생성한 적의 능력치와 추적 대상 설정
-        enemy.Setup(health, damage, speed,speed * 0.3f, skinColor);
+        enemy.Setup(health, damage, speed, speed * 0.3f, skinColor);
 
         // 생성된 적을 리스트에 추가
         enemies.Add(enemy);
@@ -89,5 +91,11 @@ public class EnemySpawner : MonoBehaviour
         enemy.OnDeath += () => Destroy(enemy.gameObject, 10f);
         // 적 사망시 점수 상승
         enemy.OnDeath += () => GameManager.Instance.AddScore(100);
+
+        // enemy.OnDeath += () => {
+        //     enemies.Remove(enemy);
+        //     Destroy(enemy.gameObject, 10f);
+        //     GameManager.Instance.AddScore(100);
+        // };
     }
 }

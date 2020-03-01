@@ -35,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentSpeed > 0.2f || playerInput.fire || playerShooter.aimState == PlayerShooter.AimState.HipFire) Rotate();
+        if (currentSpeed > 0.2f || playerInput.fire || playerShooter.aimState == PlayerShooter.AimState.HipFire) 
+            Rotate();
 
         Move(playerInput.moveInput);
         
@@ -61,7 +62,8 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(velocity * Time.deltaTime);
 
-        if (characterController.isGrounded) currentVelocityY = 0;
+        if (characterController.isGrounded) 
+            currentVelocityY = 0;
     }
 
     public void Rotate()
